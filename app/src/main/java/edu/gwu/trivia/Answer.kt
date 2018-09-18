@@ -1,3 +1,7 @@
 package edu.gwu.trivia
 
-data class Answer(private val answer: String, private val correct: Boolean)
+import android.os.Parcelable
+import kotlinx.android.parcel.Parcelize
+
+@Parcelize
+data class Answer(val answer: String, private val correct: Boolean): Parcelable

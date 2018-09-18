@@ -1,0 +1,52 @@
+<?xml version="1.0" encoding="utf-8"?>
+<RelativeLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
+    xmlns:tools="http://schemas.android.com/tools"
+    android:layout_width="match_parent"
+    android:layout_height="match_parent"
+    tools:context=".GameActivity">
+
+    <ImageView
+        android:layout_width="match_parent"
+        android:layout_height="match_parent"
+        android:src="@drawable/ic_launcher_background"
+        android:scaleType="fitCenter"
+        />
+
+    <Button
+        android:id="@+id/top_left_button"
+        android:layout_width="150dp"
+        android:layout_height="wrap_content"
+        tools:text="George Washington"
+        android:layout_alignParentLeft="true"
+        android:layout_alignParentTop="true"
+        />
+
+    <Button
+        android:id="@+id/top_right_button"
+        android:layout_width="150dp"
+        android:layout_height="wrap_content"
+        tools:text="Abe Lincoln"
+        android:layout_alignParentRight="true"
+        android:layout_alignParentTop="true"
+        />
+
+    <Button
+        android:id="@+id/bottom_left_button"
+        android:layout_width="150dp"
+        android:layout_height="wrap_content"
+        tools:text="Bill Clinton"
+        android:layout_alignParentLeft="true"
+        android:layout_alignParentBottom="true"
+        />
+
+    <Button
+        android:id="@+id/bottom_right_button"
+        android:layout_width="150dp"
+        android:layout_height="wrap_content"
+        tools:text="George Bush"
+        android:layout_alignParentRight="true"
+        android:layout_alignParentBottom="true"
+        />
+
+</RelativeLayout>
