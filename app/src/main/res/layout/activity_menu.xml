@@ -8,7 +8,7 @@
     android:background="@color/colorAccent"
     android:gravity="center"
 
-    tools:context=".MenuActivity">
+    tools:context=".activity.MenuActivity">
     
     <ImageView
         android:layout_width="100dp"

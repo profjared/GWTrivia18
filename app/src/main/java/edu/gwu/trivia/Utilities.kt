@@ -3,6 +3,9 @@ package edu.gwu.trivia
 import android.content.Context
 import android.content.res.AssetManager
 import android.util.Log
+import edu.gwu.trivia.model.Answer
+import edu.gwu.trivia.model.GameData
+import edu.gwu.trivia.model.Question
 import java.nio.charset.Charset
 import java.util.*
 
@@ -47,7 +50,7 @@ object Utilities {
                 val correctAnswer = Answer(lines[i], true)
                 Collections.shuffle(wrongAnswers)
 
-                val question = Question(wrongAnswers,correctAnswer)
+                val question = Question(wrongAnswers, correctAnswer)
 
                 questions.add(question)
             }

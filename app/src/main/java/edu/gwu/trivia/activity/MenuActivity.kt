@@ -1,9 +1,11 @@
-package edu.gwu.trivia
+package edu.gwu.trivia.activity
 
 import android.content.Intent
 import android.os.Bundle
 import android.support.v7.app.AppCompatActivity
 import android.util.Log
+import edu.gwu.trivia.R
+import edu.gwu.trivia.Utilities
 import kotlinx.android.synthetic.main.activity_menu.*
 import org.jetbrains.anko.activityUiThread
 import org.jetbrains.anko.doAsync

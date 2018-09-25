@@ -1,4 +1,4 @@
-package edu.gwu.trivia
+package edu.gwu.trivia.model
 
 import android.os.Parcelable
 import kotlinx.android.parcel.Parcelize
