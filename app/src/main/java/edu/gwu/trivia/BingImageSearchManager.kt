@@ -5,6 +5,7 @@ import android.content.res.Configuration
 import android.net.Uri
 import android.util.Log
 import android.widget.ImageView
+import com.squareup.picasso.Picasso
 import edu.gwu.trivia.model.generated.BingResponse
 import retrofit2.Call
 import retrofit2.Callback
@@ -42,7 +43,7 @@ class BingImageSearchManager(private val context: Context, private val imageView
         apiEndpoint.getBingResponse(query, "Strict", "en-us").enqueue(object: Callback<BingResponse> {
             override fun onFailure(call: Call<BingResponse>, t: Throwable) {
                 Log.d(TAG, "API call failed!")
-
+                imageSearchCompletionListener?.imageNotLoaded()
             }
 
             override fun onResponse(call: Call<BingResponse>, response: Response<BingResponse>) {
@@ -52,10 +53,20 @@ class BingImageSearchManager(private val context: Context, private val imageView
                 if(bingResponseBody != null) {
                     val uri = parseUriFromBingResponse(bingResponseBody, orientation)
                     Log.d(TAG, "found uri: $uri")
+
+                    Picasso.get().load(uri).into(imageView, object: com.squareup.picasso.Callback {
+                        override fun onSuccess() {
+                            imageSearchCompletionListener?.imageLoaded()
+                        }
+
+                        override fun onError(e: java.lang.Exception?) {
+                            imageSearchCompletionListener?.imageNotLoaded()
+                        }
+                    })
+                } else {
+                    imageSearchCompletionListener?.imageNotLoaded()
                 }
-
             }
-
         })
     }
 

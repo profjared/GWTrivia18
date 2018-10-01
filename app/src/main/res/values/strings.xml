@@ -5,4 +5,6 @@
     <string name="high_score_placeholder">High Score: 6</string>
     <string name="play_button_text">Play</string>
     <string name="high_scores_button_text">High Scores</string>
+    <string name="correct">Yay, you got it right!</string>
+    <string name="wrong">Boooooo</string>
 </resources>

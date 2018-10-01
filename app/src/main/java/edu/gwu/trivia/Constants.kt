@@ -4,7 +4,7 @@ object Constants {
     //Bing Image Search
     const val MAX_IMAGE_FILE_SIZE_IN_BYTES = 500*1024
     const val BING_SEARCH_URL = "https://api.cognitive.microsoft.com"
-    const val BING_API_KEY = "OBTAIN FROM SLACK"
+    const val BING_API_KEY = "REPLACE ME"
 
     //Shared Preferences keys
     val SCORES_PREF_KEY = "SCORES"

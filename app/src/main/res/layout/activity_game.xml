@@ -21,6 +21,7 @@
         tools:text="George Washington"
         android:layout_alignParentLeft="true"
         android:layout_alignParentTop="true"
+        android:onClick="buttonPressed"
         />
 
     <Button
@@ -30,6 +31,7 @@
         tools:text="Abe Lincoln"
         android:layout_alignParentRight="true"
         android:layout_alignParentTop="true"
+        android:onClick="buttonPressed"
         />
 
     <Button
@@ -39,6 +41,7 @@
         tools:text="Bill Clinton"
         android:layout_alignParentLeft="true"
         android:layout_alignParentBottom="true"
+        android:onClick="buttonPressed"
         />
 
     <Button
@@ -48,6 +51,7 @@
         tools:text="George Bush"
         android:layout_alignParentRight="true"
         android:layout_alignParentBottom="true"
+        android:onClick="buttonPressed"
         />
 
 </RelativeLayout>
