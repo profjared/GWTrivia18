@@ -3,9 +3,12 @@ package edu.gwu.trivia.activity
 import android.os.Bundle
 import android.support.v7.app.AppCompatActivity
 import android.util.Log
+import android.view.Menu
+import android.view.MenuItem
 import android.view.View
 import android.widget.Button
 import edu.gwu.trivia.BingImageSearchManager
+import edu.gwu.trivia.PersistenceManager
 import edu.gwu.trivia.R
 import edu.gwu.trivia.model.GameData
 import kotlinx.android.synthetic.main.activity_game.*
@@ -16,6 +19,7 @@ class GameActivity : AppCompatActivity(), BingImageSearchManager.ImageSearchComp
     private val TAG = "GameActivity"
     private lateinit var gameData: GameData
     private lateinit var bingImageSearchManager: BingImageSearchManager
+    private lateinit var persistenceManager: PersistenceManager
 
     private var score = 0
     private var currentQuestionIndex = 0
@@ -26,6 +30,10 @@ class GameActivity : AppCompatActivity(), BingImageSearchManager.ImageSearchComp
     override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)
         setContentView(R.layout.activity_game)
+
+        setSupportActionBar(game_toolbar)
+
+        persistenceManager = PersistenceManager(this)
 
         buttons.apply {
             add(top_left_button)
@@ -43,11 +51,25 @@ class GameActivity : AppCompatActivity(), BingImageSearchManager.ImageSearchComp
         nextTurn()
     }
 
+    override fun onCreateOptionsMenu(menu: Menu?): Boolean {
+        menuInflater.inflate(R.menu.menu_game, menu)
+
+        return super.onCreateOptionsMenu(menu)
+    }
+
+    fun skipButtonPressed(item: MenuItem) {
+        nextTurn()
+        item.isEnabled = false
+    }
+
     private fun nextTurn() {
         if(numWrong == 3 ) { //game over condition
+            persistenceManager.saveScore(score)
             finish()
         }
         else {
+            supportActionBar?.title = getString(R.string.score, score)
+
             currentQuestionIndex++
             currentQuestionIndex %= gameData.questions.size
 
@@ -56,6 +78,12 @@ class GameActivity : AppCompatActivity(), BingImageSearchManager.ImageSearchComp
             val wrongAnswers = question.wrongAnswers
 
             Log.d(TAG, "the correct answer is ${answer.answer}")
+
+
+            buttons.forEach {
+                it.isEnabled = false
+                it.text = ""
+            }
 
             bingImageSearchManager.searchImages(answer.answer)
         }
@@ -74,6 +102,7 @@ class GameActivity : AppCompatActivity(), BingImageSearchManager.ImageSearchComp
             button.apply {
                 text = answer.answer
                 tag = answer.correct
+                isEnabled = true
             }
         }
     }

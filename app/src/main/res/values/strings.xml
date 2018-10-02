@@ -7,4 +7,6 @@
     <string name="high_scores_button_text">High Scores</string>
     <string name="correct">Yay, you got it right!</string>
     <string name="wrong">Boooooo</string>
+    <string name="skip">Skip</string>
+    <string name="score">Score: %d</string>
 </resources>

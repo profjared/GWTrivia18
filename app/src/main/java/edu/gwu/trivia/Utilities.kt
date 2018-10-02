@@ -59,6 +59,8 @@ object Utilities {
             Log.e("generateQuestions", e.message)
         }
 
+        Collections.shuffle(questions)
+
         return GameData(questions, triviaCategory)
     }
 
