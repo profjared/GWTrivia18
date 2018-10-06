@@ -4,9 +4,9 @@ import com.squareup.moshi.Json
 
 data class PivotSuggestionsItem(
 
-	@Json(name="pivot")
+	@field:Json(name="pivot")
 	val pivot: String? = null,
 
-	@Json(name="suggestions")
+	@field:Json(name="suggestions")
 	val suggestions: List<SuggestionsItem?>? = null
 )

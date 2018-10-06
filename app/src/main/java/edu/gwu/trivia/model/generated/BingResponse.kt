@@ -4,33 +4,33 @@ import com.squareup.moshi.Json
 
 data class BingResponse(
 
-	@Json(name="pivotSuggestions")
+	@field:Json(name="pivotSuggestions")
 	val pivotSuggestions: List<PivotSuggestionsItem?>? = null,
 
-	@Json(name="relatedSearches")
+	@field:Json(name="relatedSearches")
 	val relatedSearches: List<RelatedSearchesItem?>? = null,
 
-	@Json(name="readLink")
+	@field:Json(name="readLink")
 	val readLink: String? = null,
 
-	@Json(name="totalEstimatedMatches")
+	@field:Json(name="totalEstimatedMatches")
 	val totalEstimatedMatches: Int? = null,
 
-	@Json(name="_type")
+	@field:Json(name="_type")
 	val type: String? = null,
 
-	@Json(name="webSearchUrl")
+	@field:Json(name="webSearchUrl")
 	val webSearchUrl: String? = null,
 
-	@Json(name="instrumentation")
+	@field:Json(name="instrumentation")
 	val instrumentation: Instrumentation? = null,
 
-	@Json(name="queryExpansions")
+	@field:Json(name="queryExpansions")
 	val queryExpansions: List<QueryExpansionsItem?>? = null,
 
-	@Json(name="nextOffset")
+	@field:Json(name="nextOffset")
 	val nextOffset: Int? = null,
 
-	@Json(name="value")
+	@field:Json(name="value")
 	val value: List<ValueItem>
 )

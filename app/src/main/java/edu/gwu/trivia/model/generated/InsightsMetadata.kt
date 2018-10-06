@@ -4,15 +4,15 @@ import com.squareup.moshi.Json
 
 data class InsightsMetadata(
 
-	@Json(name="recipeSourcesCount")
+	@field:Json(name="recipeSourcesCount")
 	val recipeSourcesCount: Int? = null,
 
-	@Json(name="pagesIncludingCount")
+	@field:Json(name="pagesIncludingCount")
 	val pagesIncludingCount: Int? = null,
 
-	@Json(name="availableSizesCount")
+	@field:Json(name="availableSizesCount")
 	val availableSizesCount: Int? = null,
 
-	@Json(name="bestRepresentativeQuery")
+	@field:Json(name="bestRepresentativeQuery")
 	val bestRepresentativeQuery: BestRepresentativeQuery? = null
 )

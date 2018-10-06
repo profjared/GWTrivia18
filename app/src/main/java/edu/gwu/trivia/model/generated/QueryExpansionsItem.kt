@@ -4,18 +4,18 @@ import com.squareup.moshi.Json
 
 data class QueryExpansionsItem(
 
-	@Json(name="displayText")
+	@field:Json(name="displayText")
 	val displayText: String? = null,
 
-	@Json(name="searchLink")
+	@field:Json(name="searchLink")
 	val searchLink: String? = null,
 
-	@Json(name="thumbnail")
+	@field:Json(name="thumbnail")
 	val thumbnail: Thumbnail? = null,
 
-	@Json(name="webSearchUrl")
+	@field:Json(name="webSearchUrl")
 	val webSearchUrl: String? = null,
 
-	@Json(name="text")
+	@field:Json(name="text")
 	val text: String? = null
 )
