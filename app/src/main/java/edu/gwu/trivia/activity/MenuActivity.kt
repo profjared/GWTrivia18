@@ -30,12 +30,18 @@ class MenuActivity : AppCompatActivity() {
 
             loadGameData()
         }
+
+        high_scores_button.setOnClickListener {
+            val intent = Intent(this@MenuActivity, ScoreActivity::class.java)
+            startActivity(intent)
+        }
     }
 
     override fun onResume() {
         super.onResume()
 
-        high_score_textview.text = getString(R.string.score, persistenceManager.fetchScore())
+        val highScore = persistenceManager.highScore()?.score ?: 0 //fall back on 0
+        high_score_textview.text = getString(R.string.score, highScore)
     }
 
     private fun loadGameData() {

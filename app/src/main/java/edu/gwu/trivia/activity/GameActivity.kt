@@ -79,7 +79,6 @@ class GameActivity : AppCompatActivity(), BingImageSearchManager.ImageSearchComp
 
             Log.d(TAG, "the correct answer is ${answer.answer}")
 
-
             buttons.forEach {
                 it.isEnabled = false
                 it.text = ""
