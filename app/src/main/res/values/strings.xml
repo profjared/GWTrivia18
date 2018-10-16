@@ -9,4 +9,6 @@
     <string name="wrong">Boooooo</string>
     <string name="skip">Skip</string>
     <string name="score">Score: %d</string>
+    <string name="share">Share</string>
+    <string name="share_message">Check out my high score!: %d</string>
 </resources>

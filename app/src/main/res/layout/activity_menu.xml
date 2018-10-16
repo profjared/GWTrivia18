@@ -6,40 +6,51 @@
     android:layout_height="match_parent"
     android:orientation="vertical"
     android:background="@color/colorAccent"
-    android:gravity="center"
-
     tools:context=".activity.MenuActivity">
-    
-    <ImageView
-        android:layout_width="200dp"
-        android:layout_height="100dp"
-        android:src="@drawable/trivia"
-        android:layout_marginBottom="20dp"
-        />
 
-    <Button
-        android:id="@+id/play_button"
-        android:layout_width="120dp"
-        android:layout_height="50dp"
-        android:text="@string/play_button_text"
-        android:layout_marginBottom="20dp"
-        />
+    <android.support.v7.widget.Toolbar
+        android:id="@+id/menu_toolbar"
+        android:background="@color/colorPrimary"
+        android:layout_width="match_parent"
+        android:layout_height="?android:attr/actionBarSize"/>
 
-    <Button
-        android:id="@+id/high_scores_button"
-        android:layout_width="120dp"
-        android:layout_height="50dp"
-        android:text="@string/high_scores_button_text"
-        android:layout_marginBottom="20dp"
-        />
+    <LinearLayout
+        android:layout_width="match_parent"
+        android:layout_height="match_parent"
+        android:orientation="vertical"
+        android:gravity="center"
+        >
+        <ImageView
+            android:layout_width="200dp"
+            android:layout_height="100dp"
+            android:src="@drawable/trivia"
+            android:layout_marginBottom="20dp"
+            />
 
-    <TextView
-        android:id="@+id/high_score_textview"
-        android:layout_width="wrap_content"
-        android:layout_height="wrap_content"
-        android:text="@string/high_score_placeholder"
-        android:textSize="20dp"
-        android:textColor="#FFFFFF"
-        />
+        <Button
+            android:id="@+id/play_button"
+            android:layout_width="120dp"
+            android:layout_height="50dp"
+            android:text="@string/play_button_text"
+            android:layout_marginBottom="20dp"
+            />
 
+        <Button
+            android:id="@+id/high_scores_button"
+            android:layout_width="120dp"
+            android:layout_height="50dp"
+            android:text="@string/high_scores_button_text"
+            android:layout_marginBottom="20dp"
+            />
+
+        <TextView
+            android:id="@+id/high_score_textview"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:text="@string/high_score_placeholder"
+            android:textSize="20dp"
+            android:textColor="#FFFFFF"
+            />
+
+    </LinearLayout>
 </LinearLayout>
