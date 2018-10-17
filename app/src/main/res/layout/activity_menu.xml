@@ -43,6 +43,14 @@
             android:layout_marginBottom="20dp"
             />
 
+        <Button
+            android:id="@+id/pets_button"
+            android:layout_width="120dp"
+            android:layout_height="50dp"
+            android:text="Test Pets API"
+            android:layout_marginBottom="20dp"
+            />
+
         <TextView
             android:id="@+id/high_score_textview"
             android:layout_width="wrap_content"

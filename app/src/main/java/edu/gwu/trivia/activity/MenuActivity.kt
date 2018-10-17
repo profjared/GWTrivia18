@@ -7,6 +7,7 @@ import android.util.Log
 import android.view.Menu
 import android.view.MenuItem
 import edu.gwu.trivia.PersistenceManager
+import edu.gwu.trivia.PetSearchManager
 import edu.gwu.trivia.R
 import edu.gwu.trivia.Utilities
 import kotlinx.android.synthetic.main.activity_menu.*
@@ -38,6 +39,11 @@ class MenuActivity : AppCompatActivity() {
         high_scores_button.setOnClickListener {
             val intent = Intent(this@MenuActivity, ScoreActivity::class.java)
             startActivity(intent)
+        }
+
+        pets_button.setOnClickListener {
+            val petSearchManager = PetSearchManager()
+            petSearchManager.searchPets()
         }
     }
 
