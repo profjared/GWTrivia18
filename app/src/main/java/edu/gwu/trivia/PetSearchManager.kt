@@ -11,6 +11,7 @@ import retrofit2.converter.moshi.MoshiConverterFactory
 import retrofit2.http.GET
 import retrofit2.http.Query
 
+
 class PetSearchManager {
 
     private val TAG = "PetSearchManager"
@@ -28,7 +29,7 @@ class PetSearchManager {
 
     fun searchPets() {
         val retrofit = Retrofit.Builder()
-                .baseUrl("http://api.petfinder.com")
+                .baseUrl("https://api.petfinder.com")
                 .addConverterFactory(MoshiConverterFactory.create())
                 .build()
 
