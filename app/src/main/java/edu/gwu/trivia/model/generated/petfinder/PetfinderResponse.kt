@@ -1,11 +1,5 @@
 package edu.gwu.trivia.model.generated.petfinder
 
-
 import com.squareup.moshi.Json
 
-
-data class ShelterPetId(
-
-	@field:Json(name="\$t")
-	val T: String? = null
-)
+data class PetfinderResponse(@Json(name = "petfinder") val petfinder: Petfinder)
