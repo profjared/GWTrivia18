@@ -19,11 +19,9 @@ class PersistenceManager(private val context: Context) {
         sharedPreferences = PreferenceManager.getDefaultSharedPreferences(context)
     }
 
-    fun saveScore(score: Int) {
+    fun saveScore(score: Score) {
 
         val scores = fetchScores().toMutableList()
-        val score = Score(score, Date())
-
         scores.add(score)
 
         val editor = sharedPreferences.edit()

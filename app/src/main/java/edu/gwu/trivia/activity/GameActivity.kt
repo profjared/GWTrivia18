@@ -1,5 +1,6 @@
 package edu.gwu.trivia.activity
 
+import android.location.Location
 import android.os.Bundle
 import android.support.v7.app.AppCompatActivity
 import android.util.Log
@@ -7,21 +8,20 @@ import android.view.Menu
 import android.view.MenuItem
 import android.view.View
 import android.widget.Button
-import edu.gwu.trivia.BingImageSearchManager
-import edu.gwu.trivia.PersistenceManager
-import edu.gwu.trivia.R
-import edu.gwu.trivia.ShakeDetector
+import edu.gwu.trivia.*
 import edu.gwu.trivia.model.GameData
+import edu.gwu.trivia.model.Score
 import kotlinx.android.synthetic.main.activity_game.*
 import org.jetbrains.anko.toast
 import java.util.*
 
-class GameActivity : AppCompatActivity(), BingImageSearchManager.ImageSearchCompletionListener, ShakeDetector.ShakeListener {
+class GameActivity : AppCompatActivity(), BingImageSearchManager.ImageSearchCompletionListener, ShakeDetector.ShakeListener, LocationDetector.LocationListener {
     private val TAG = "GameActivity"
     private lateinit var gameData: GameData
     private lateinit var bingImageSearchManager: BingImageSearchManager
     private lateinit var persistenceManager: PersistenceManager
     private lateinit var shakeDetector: ShakeDetector
+    private lateinit var locationDetector: LocationDetector
 
     private var score = 0
     private var currentQuestionIndex = 0
@@ -35,6 +35,9 @@ class GameActivity : AppCompatActivity(), BingImageSearchManager.ImageSearchComp
         setContentView(R.layout.activity_game)
 
         setSupportActionBar(game_toolbar)
+
+        locationDetector = LocationDetector(this)
+        locationDetector.locationListener = this
 
         shakeDetector = ShakeDetector(this)
         shakeDetector.shakeListener = this
@@ -80,9 +83,10 @@ class GameActivity : AppCompatActivity(), BingImageSearchManager.ImageSearchComp
     }
 
     private fun nextTurn() {
+        disableButtons()
+
         if(numWrong == 3 ) { //game over condition
-            persistenceManager.saveScore(score)
-            finish()
+            locationDetector.detectLocation()
         }
         else {
             supportActionBar?.title = getString(R.string.score, score)
@@ -95,12 +99,14 @@ class GameActivity : AppCompatActivity(), BingImageSearchManager.ImageSearchComp
 
             Log.d(TAG, "the correct answer is ${answer.answer}")
 
-            buttons.forEach {
-                it.isEnabled = false
-                it.text = ""
-            }
-
             bingImageSearchManager.searchImages(answer.answer)
+        }
+    }
+
+    private fun disableButtons() {
+        buttons.forEach {
+            it.isEnabled = false
+            it.text = ""
         }
     }
 
@@ -157,5 +163,29 @@ class GameActivity : AppCompatActivity(), BingImageSearchManager.ImageSearchComp
 
     override fun shakeDetected() {
         skip()
+    }
+
+    private fun gameOver(location: Location?) {
+        //didn't have time, but planned to update score model to include a latitude and longitude
+        val score = Score(score, Date())
+
+        persistenceManager.saveScore(score)
+        finish()
+    }
+
+    override fun locationFound(location: Location) {
+        toast("${location.latitude}----${location.longitude}")
+
+        gameOver(location)
+    }
+
+    override fun locationNotFound(reason: LocationDetector.FailureReason) {
+
+        when (reason) {
+            LocationDetector.FailureReason.TIMEOUT -> toast(getString(R.string.location_not_found))
+            LocationDetector.FailureReason.NO_PERMISSION -> toast(getString(R.string.no_location_permission))
+        }
+
+        gameOver(null)
     }
 }

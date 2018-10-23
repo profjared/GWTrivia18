@@ -12,4 +12,8 @@
     <string name="share">Share</string>
     <string name="share_message">Check out my high score!: %d</string>
     <string name="skip_used">Skip Already Used!</string>
+    <string name="permissions_granted">Location permission approved</string>
+    <string name="permissions_denied">Scores will not be saved with location</string>
+    <string name="location_not_found">Location couldn\'t be found</string>
+    <string name="no_location_permission">No location permission</string>
 </resources>
