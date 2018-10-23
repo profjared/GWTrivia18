@@ -11,4 +11,5 @@
     <string name="score">Score: %d</string>
     <string name="share">Share</string>
     <string name="share_message">Check out my high score!: %d</string>
+    <string name="skip_used">Skip Already Used!</string>
 </resources>

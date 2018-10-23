@@ -10,20 +10,23 @@ import android.widget.Button
 import edu.gwu.trivia.BingImageSearchManager
 import edu.gwu.trivia.PersistenceManager
 import edu.gwu.trivia.R
+import edu.gwu.trivia.ShakeDetector
 import edu.gwu.trivia.model.GameData
 import kotlinx.android.synthetic.main.activity_game.*
 import org.jetbrains.anko.toast
 import java.util.*
 
-class GameActivity : AppCompatActivity(), BingImageSearchManager.ImageSearchCompletionListener {
+class GameActivity : AppCompatActivity(), BingImageSearchManager.ImageSearchCompletionListener, ShakeDetector.ShakeListener {
     private val TAG = "GameActivity"
     private lateinit var gameData: GameData
     private lateinit var bingImageSearchManager: BingImageSearchManager
     private lateinit var persistenceManager: PersistenceManager
+    private lateinit var shakeDetector: ShakeDetector
 
     private var score = 0
     private var currentQuestionIndex = 0
     private var numWrong = 0
+    private var skipUsed = false
 
     private var buttons = ArrayList<Button>()
 
@@ -32,6 +35,9 @@ class GameActivity : AppCompatActivity(), BingImageSearchManager.ImageSearchComp
         setContentView(R.layout.activity_game)
 
         setSupportActionBar(game_toolbar)
+
+        shakeDetector = ShakeDetector(this)
+        shakeDetector.shakeListener = this
 
         persistenceManager = PersistenceManager(this)
 
@@ -51,6 +57,18 @@ class GameActivity : AppCompatActivity(), BingImageSearchManager.ImageSearchComp
         nextTurn()
     }
 
+    override fun onResume() {
+        super.onResume()
+
+        shakeDetector.start()
+    }
+
+    override fun onPause() {
+        super.onPause()
+
+        shakeDetector.stop()
+    }
+
     override fun onCreateOptionsMenu(menu: Menu?): Boolean {
         menuInflater.inflate(R.menu.menu_game, menu)
 
@@ -58,8 +76,7 @@ class GameActivity : AppCompatActivity(), BingImageSearchManager.ImageSearchComp
     }
 
     fun skipButtonPressed(item: MenuItem) {
-        nextTurn()
-        item.isEnabled = false
+        skip()
     }
 
     private fun nextTurn() {
@@ -75,7 +92,6 @@ class GameActivity : AppCompatActivity(), BingImageSearchManager.ImageSearchComp
 
             val question = gameData.questions.get(currentQuestionIndex)
             val answer = question.correctAnswer
-            val wrongAnswers = question.wrongAnswers
 
             Log.d(TAG, "the correct answer is ${answer.answer}")
 
@@ -121,11 +137,25 @@ class GameActivity : AppCompatActivity(), BingImageSearchManager.ImageSearchComp
         nextTurn()
     }
 
+    private fun skip() {
+        if(!skipUsed) {
+            nextTurn()
+            skipUsed = true
+        }
+        else {
+            toast(R.string.skip_used)
+        }
+    }
+
     override fun imageLoaded() {
         displayAnswers()
     }
 
     override fun imageNotLoaded() {
         nextTurn()
+    }
+
+    override fun shakeDetected() {
+        skip()
     }
 }

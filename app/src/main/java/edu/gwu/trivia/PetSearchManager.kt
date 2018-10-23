@@ -37,7 +37,7 @@ class PetSearchManager {
                 .build()
 
         val retrofit = Retrofit.Builder()
-                .baseUrl("https://api.petfinder.com")
+                .baseUrl("http://api.petfinder.com")
                 .addConverterFactory(MoshiConverterFactory.create(moshi))
                 .build()
 
